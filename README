@@ -1,0 +1,26 @@
+This is a custom distribution of Python, version 3.1.2.
+
+This distribution includes a custom CMake-based build system tailored to fit in
+the Athena Game Framework.
+
+Since rewriting a full CMake-based build system for Python is a very time-consuming task,
+the provided CMake scripts reuse the standard configure & make build system of Python.
+
+
+License
+-------
+
+Python's license is unchanged: this library is released under the Python 2.6.2 license.
+
+The license of Python is contained in the file 'LICENSE'.
+
+
+Compilation
+-----------
+
+It is recommended to compile the library in a separate folder. Here's how I do it:
+
+  $ mkdir build
+  $ cd build
+  $ cmake ..
+  $ make
