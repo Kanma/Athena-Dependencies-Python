@@ -323,6 +323,17 @@ search_for_prefix(wchar_t *argv0_path, wchar_t *home)
     size_t n;
     wchar_t *vpath;
 
+    /* Athena addition */
+    wcscpy(prefix, argv0_path);
+    joinpath(prefix, L"Modules");
+    if (isdir(prefix)) {
+        wcscpy(prefix, argv0_path);
+        joinpath(prefix, L"Lib");
+        joinpath(prefix, LANDMARK);
+        if (ismodule(prefix))
+            return -1;
+    }
+
     /* If PYTHONHOME is set, we believe it unconditionally */
     if (home) {
         wchar_t *delim;
@@ -380,6 +391,13 @@ static int
 search_for_exec_prefix(wchar_t *argv0_path, wchar_t *home)
 {
     size_t n;
+
+    /* Athena addition */
+    wcscpy(exec_prefix, argv0_path);
+    joinpath(exec_prefix, L"Modules");
+    if (isdir(exec_prefix)) {
+        return -1;
+    }
 
     /* If PYTHONHOME is set, we believe it unconditionally */
     if (home) {

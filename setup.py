@@ -295,6 +295,8 @@ class PyBuildExt(build_ext):
 
     def detect_modules(self):
         # Ensure that /usr/local is always used
+        add_dir_to_list(self.compiler.library_dirs, '/opt/local/lib')
+        add_dir_to_list(self.compiler.include_dirs, '/opt/local/include')
         add_dir_to_list(self.compiler.library_dirs, '/usr/local/lib')
         add_dir_to_list(self.compiler.include_dirs, '/usr/local/include')
 
