@@ -6,6 +6,8 @@ the Athena Game Framework.
 Since rewriting a full CMake-based build system for Python is a very time-consuming task,
 the provided CMake scripts reuse the standard configure & make build system of Python.
 
+The original README file of Python is at 'Python-README'.
+
 
 License
 -------
