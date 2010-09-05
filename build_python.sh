@@ -1,27 +1,27 @@
 #! /bin/sh
 
-if [ ! -e pythonbuild/Makefile ]
+if [ ! -e bin/python ]
 then
     mkdir -p pythonbuild
     cd pythonbuild
     
-    $1/configure --enable-shared --enable-ipv6 --prefix=""
+    $1/configure --enable-ipv6
     make
     
-    # MacOS X specific processing
-    if [ "$2" == "MacOSX" ]
-    then
-        mkdir -p ../bin/Modules
-        mkdir -p ../include/Python
-        
-        cp ./python.exe ../bin/python
-        cp ./libpython3.1.dylib ../bin/libpython3.1.dylib
-        cp -R $1/Lib ../bin/Lib
-        cp ./build/lib.macosx*/*.so ../bin/Modules/
-        cp ./pyconfig.h ../include/Python
+    mkdir -p ../bin/Modules
+    mkdir -p ../lib
+    mkdir -p ../include/Python
 
-        install_name_tool -change /lib/libpython3.1.dylib libpython3.1.dylib ../bin/python
-        install_name_tool -id libpython3.1.dylib ../bin/libpython3.1.dylib
+    if [ -e ./python.exe ]
+    then
+        cp ./python.exe ../bin/python
+    else
+        cp ./python ../bin/python
     fi
+
+    cp ./libpython3.1.a ../lib/
+    cp -R $1/Lib ../bin/Lib
+    cp ./build/lib.*/*.so ../bin/Modules/
+    cp ./pyconfig.h ../include/Python
 fi
 

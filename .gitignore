@@ -1,4 +1,5 @@
 *.tmproj
+*.pyc
 
 /build*/
 
